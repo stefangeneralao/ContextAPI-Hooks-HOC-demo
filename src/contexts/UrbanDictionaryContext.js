@@ -9,16 +9,24 @@ const UrbanDictionaryProvider = ({ children }) => {
   const [ result, setResult ] = useState({});
   const [ isFetching, setIsFetching ] = useState(false);
 
+  const clearResult = () => setResult({});
+  
+  const clearValue = () => setValue('');
+  
   const onSubmit = async e => {
     e.preventDefault();
+
     try {
       setIsFetching(true);
+      clearValue();
+      
       const response = await fetch(`${ url }${ value }`);
-      const { list: [ first ] } = await response.json();
-      const { word, definition } = first;
+      const { list } = await response.json();
+      const [{ word, definition }] = list;
+      
       setResult({ word, definition });
     } catch {
-      setResult({});
+      clearResult();
     } finally {
       setIsFetching(false);
     }

@@ -13,11 +13,11 @@ const UrbanDictionary = ({
   <div className="urban-dictionary">
     <Card>
       { isFetching ? (
-        <p>Loading...</p>
+        <p className="loader">Loading...</p>
       ) : (
         <>
-          <h2>{ word || 'Urban Dictionary' }</h2>
-          <p>{ definition }</p>
+          <h2 className="title">{ word || 'Urban Dictionary' }</h2>
+          <p className="definition">{ definition }</p>
         </>
       ) }
       <form onSubmit={ onSubmit }>

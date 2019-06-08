@@ -1,14 +1,25 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 
 const CounterContext = createContext();
 
 const CounterProvider = ({ children }) => {
-  const [ count, setCount ] = useState(0);
+  const [ count, setCount ] = useState(
+    parseInt(localStorage.getItem('count')) || 0
+  );
+  const isInitialMount = useRef(true);
 
   const incrementCount = () => setCount(count + 1);
 
   const decreaseCount = () => setCount(count - 1);
 
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      localStorage.setItem('count', count);
+    }
+  }, [ count ]);
+  
   return (
     <CounterContext.Provider
       value={ {
