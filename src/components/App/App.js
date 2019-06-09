@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'recompose';
 import Counter from 'components/Counter/Counter';
 import UrbanDictionary from 'components/UrbanDictionary/UrbanDictionary';
 import { provideCounter } from 'contexts/CounterContext';
@@ -12,4 +13,7 @@ const App = () => (
   </div>
 );
 
-export default provideUrbanDictionary(provideCounter(App));
+export default compose(
+  provideUrbanDictionary,
+  provideCounter,
+)(App);
