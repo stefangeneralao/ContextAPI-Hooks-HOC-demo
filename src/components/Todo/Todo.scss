@@ -1,0 +1,14 @@
+.todo {
+  display: grid;
+  text-align: left;
+  grid-template-columns: 1fr 30px;
+  grid-template-rows: 1fr;
+
+  .remove-button {
+    cursor: pointer;
+  }
+
+  .line-through {
+    text-decoration: line-through;
+  }
+}
