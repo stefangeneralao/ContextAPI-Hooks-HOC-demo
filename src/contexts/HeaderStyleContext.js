@@ -1,13 +1,26 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useRef, useEffect } from 'react';
 import contextHOC from 'utils/contextHOC';
 
 const HeaderStyleContext = createContext();
 
+const initialBackgroundColor = (
+  localStorage.getItem('headerBackgroundColor') || '#333'
+);
+
+const initialColor = (
+  localStorage.getItem('headerFontColor') || 'white'
+);
+
+const initialLabel = (
+  localStorage.getItem('headerLabel') || 'Context + Hooks = <3'
+);
+
 const HeaderStyleProvider = ({ children }) => {
-  const [ label, setLabel ] = useState('Context + Hooks = <3');
-  const [ color, setColor ] = useState('white');
-  const [ backgroundColor, setBackgroundColor ] = useState('#333');
+  const [ label, setLabel ] = useState(initialLabel);
+  const [ color, setColor ] = useState(initialColor);
+  const [ backgroundColor, setBackgroundColor ] = useState(initialBackgroundColor);
   const [ labelTextFieldValue, setLabelTextFieldValue ] = useState('');
+  const isInitialMount = useRef(true);
   
   const onBackgroundColorChange = e => {
     const { value } = e.target;
@@ -33,6 +46,16 @@ const HeaderStyleProvider = ({ children }) => {
   const clearLabelTextFieldValue = () => {
     setLabelTextFieldValue('');
   }
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      localStorage.setItem('headerBackgroundColor', backgroundColor);
+      localStorage.setItem('headerFontColor', color);
+      localStorage.setItem('headerLabel', label);
+    }
+  }, [ label, color, backgroundColor ]);
   
   return (
     <HeaderStyleContext.Provider
