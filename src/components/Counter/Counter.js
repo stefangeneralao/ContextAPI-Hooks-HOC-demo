@@ -1,5 +1,5 @@
 import React from 'react';
-import withCounter from 'hocs/withCounter';
+import { consumeCounter } from 'contexts/CounterContext';
 import Card from 'components/Card/Card';
 import './Counter.scss';
 
@@ -13,4 +13,4 @@ const Counter = ({ count, incrementCount, decreaseCount }) => (
   </div>
 );
 
-export default withCounter(Counter);
+export default consumeCounter(Counter);
