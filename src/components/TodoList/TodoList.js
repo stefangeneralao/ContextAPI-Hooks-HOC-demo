@@ -14,6 +14,7 @@ const TodoList = ({
 }) => (
   <div className="todo-list">
     <Card>
+      <h2>Todo List</h2>
       { todos && todos.map(({ label, isComplete }, i) => (
         <Todo
           key={ `todo${ i }` }

@@ -16,7 +16,7 @@ const UrbanDictionary = ({
         <p className="loader">Loading...</p>
       ) : (
         <>
-          <h2 className="title">{ word || 'Urban Dictionary' }</h2>
+          <h2 className="title">{ word || 'Urban Dictionary API' }</h2>
           <p className="definition">{ definition }</p>
         </>
       ) }
