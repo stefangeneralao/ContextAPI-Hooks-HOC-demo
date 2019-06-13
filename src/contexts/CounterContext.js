@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
+import contextHOC from 'utils/contextHOC';
 
 const CounterContext = createContext();
 
@@ -35,4 +36,7 @@ const CounterProvider = ({ children }) => {
 
 const CounterConsumer = CounterContext.Consumer;
 
-export { CounterProvider, CounterConsumer };
+export const [
+  provideCounter,
+  consumeCounter
+] = contextHOC(CounterProvider, CounterConsumer);

@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import contextHOC from 'utils/contextHOC';
 
 const url = 'https://api.urbandictionary.com/v0/define?term=';
 
@@ -51,4 +52,7 @@ const UrbanDictionaryProvider = ({ children }) => {
 
 const UrbanDictionaryConsumer = UrbanDictionaryContext.Consumer;
 
-export { UrbanDictionaryProvider, UrbanDictionaryConsumer };
+export const [
+  provideUrbanDictionary,
+  consumeUrbanDictionary,
+] = contextHOC(UrbanDictionaryProvider, UrbanDictionaryConsumer);

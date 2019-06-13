@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'components/Card/Card';
-import withUrbanDictionary from 'hocs/withUrbanDictionary';
 import './UrbanDictionary.scss';
+import { consumeUrbanDictionary } from 'contexts/UrbanDictionaryContext';
 
 const UrbanDictionary = ({
   onSubmit,
@@ -16,7 +16,7 @@ const UrbanDictionary = ({
         <p className="loader">Loading...</p>
       ) : (
         <>
-          <h2 className="title">{ word || 'Urban Dictionary' }</h2>
+          <h2 className="title">{ word || 'Urban Dictionary API' }</h2>
           <p className="definition">{ definition }</p>
         </>
       ) }
@@ -32,4 +32,4 @@ const UrbanDictionary = ({
   </div>
 );
 
-export default withUrbanDictionary(UrbanDictionary);
+export default consumeUrbanDictionary(UrbanDictionary);
