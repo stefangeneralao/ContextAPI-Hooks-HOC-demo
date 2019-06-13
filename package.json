@@ -1,5 +1,5 @@
 {
-  "name": "context-hooks",
+  "name": "contextapi-hooks-hoc-demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
